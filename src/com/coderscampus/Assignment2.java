@@ -4,16 +4,16 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class Assignment2 {
-
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
         Random random = new Random();
         
         int randomNumber = random.nextInt(100) + 1; 
         int numberOfGuesses = 0;
+        boolean isTheRightGuess = false;
         
         System.out.println("Pick a number between 1 and 100");
-
+        
         while (numberOfGuesses < 5) {
             if (!scanner.hasNextInt()) {
                 System.out.println("Invalid input. Please enter a number");
@@ -28,19 +28,19 @@ public class Assignment2 {
                 continue;
             }
             
-            numberOfGuesses++;
             
-            if (guess < randomNumber) {
+            if (guess < randomNumber && !isTheRightGuess) {
                 System.out.println("Please pick a higher number");
-            } else if (guess > randomNumber) {
+            } else if (guess > randomNumber && !isTheRightGuess) {
                 System.out.println("Please pick a lower number");
             } else {
+            	isTheRightGuess = true;
                 System.out.println("You win!");
                 return;
             }
+            numberOfGuesses++;
         }
-
-        if (numberOfGuesses == 5) {
+        if (numberOfGuesses == 5 && !isTheRightGuess) {
             System.out.println("You lose, the number to guess was " + randomNumber);
         }else {
             scanner.close();
