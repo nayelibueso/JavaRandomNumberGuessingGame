@@ -28,22 +28,21 @@ public class Assignment2 {
                 continue;
             }
             
-            
-            if (guess < randomNumber && !isTheRightGuess) {
-                System.out.println("Please pick a higher number");
-            } else if (guess > randomNumber && !isTheRightGuess) {
-                System.out.println("Please pick a lower number");
-            } else {
+            if (guess == randomNumber) {
             	isTheRightGuess = true;
-                System.out.println("You win!");
-                return;
+            	System.out.println("You Win!");
+            	break;
+            }else if (guess < randomNumber) {
+            	System.out.println("Please pick a higher number");
+            }else if (guess > randomNumber) {
+            	System.out.println("Please pick a lower number");
             }
+           
             numberOfGuesses++;
         }
-        if (numberOfGuesses == 5 && !isTheRightGuess) {
-            System.out.println("You lose, the number to guess was " + randomNumber);
-        }else {
-            scanner.close();
+        if (!isTheRightGuess) {
+        	System.out.println("you lose, the number was " + randomNumber);
         }
+        scanner.close();
      }
 }
